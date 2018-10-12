@@ -51,7 +51,6 @@ class NormalParticle
     rotate(Rotayto);
     fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
     ellipse((float)(x),(float)(y),20,20);
-    System.out.println(Timer);
   }
 }
 interface Particle
