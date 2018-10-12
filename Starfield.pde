@@ -1,7 +1,7 @@
   Particle[] oof;
 void setup()
 {
-  frameRate(45);
+  frameRate(75);
  background(255);
    size(1000,1000);
    oof = new Particle[500];
@@ -40,8 +40,6 @@ class NormalParticle implements Particle
   int Timer3 = 0;
   void move()
   {
-    print(Timer3 + " ");
-    println(Timer2);
      if (Timer == 0)
   {
     x = x + Math.cos(Angle)*Speed;
