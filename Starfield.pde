@@ -1,43 +1,57 @@
-NormalParticle[] oof;
+  NormalParticle[] oof;
 void setup()
 {
-   background(0);
-   size(500,500);
+ background(255);
+   size(1000,1000);
    oof = new NormalParticle[1000];
   for (int i = 0;i< oof.length;i++)
 {
   oof[i] = new NormalParticle();
-  background(0);
 }
 }
 void draw()
 {
+  background(255);
   for (int i = 0;i < oof.length;i++)
   {
-   oof[i].show();
-   oof[i].move();
+    oof[i].show();
+    oof[i].move();
+ 
   }
 }
 
 class NormalParticle
 {
-  int Random = 0;
-  int Color;
-  double x = 250;
-  double y = 250;
-  double Speed = (int)(Math.random()*20-10);
+ int Color = (int)(Math.random()*255);
+  double x = 500;
+  double y = 500;
+  double Speed = (Math.random()*7.5-3.75);
   double Angle = (double)((Math.random()*2)*PI);
+  float Timer = 0;
+  float Rotayto = 0;
   void move()
   {
-    if (Random == 0)
-    {
+     if (Timer <= 200)
+  {
     x = x + Math.cos(Angle)*Speed;
-    y = y + Math.sin(Angle)*Speed;
-    }   
+    y = y + Math.sin(Angle)*Speed; 
+    Timer = Timer + 1;
+    Rotayto = Rotayto + (float)(PI/100);
+  }
+  else
+  {
+    x = x - Math.cos(Angle)*Speed;
+    y = y - Math.sin(Angle)*Speed;
+  }
+  
+  
   }
   void show()
   {
+    rotate(Rotayto);
+    fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
     ellipse((float)(x),(float)(y),20,20);
+    System.out.println(Timer);
   }
 }
 interface Particle
