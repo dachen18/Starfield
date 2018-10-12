@@ -1,6 +1,7 @@
   NormalParticle[] oof;
 void setup()
 {
+  frameRate(45);
  background(255);
    size(1000,1000);
    oof = new NormalParticle[1000];
@@ -19,9 +20,14 @@ void draw()
  
   }
 }
+void mousePressed()
+{
+  redraw();
+}
 
 class NormalParticle
 {
+ int Timer2 = 0;
  int Color = (int)(Math.random()*255);
   double x = 550;
   double y = 550;
@@ -29,15 +35,15 @@ class NormalParticle
   double Angle = (double)((Math.random()*2)*PI);
   float Timer = 0;
   float Rotayto = 0;
+  int Timer3 = 0;
   void move()
   {
-     if (Timer <= 200)
+     if (Timer == 0)
   {
     x = x + Math.cos(Angle)*Speed;
     y = y + Math.sin(Angle)*Speed; 
-    Timer = Timer + 1;
   }
-  else
+  else if (Timer == 1)
   {
     x = x - Math.cos(Angle)*Speed;
     y = y - Math.sin(Angle)*Speed;
@@ -46,8 +52,22 @@ class NormalParticle
   {
     Rotayto = Rotayto + (float)(PI/100);
   }
-  
-  
+  if (Timer2 % 275 == 0)
+  {
+    Timer = 1;
+  }
+  if (Timer2 >= 0)
+  {
+    Timer2 = Timer2 + 1;
+  }
+  if (Timer3 % 551 == 0)
+  {
+    Timer = 0;
+  }
+  if (Timer3 >= 0)
+  {
+    Timer3 = Timer3 + 1;
+  }
   }
   void show()
   {
@@ -58,7 +78,8 @@ class NormalParticle
 }
 interface Particle
 {
-  //your code here
+ public void show();
+ public void move();
 }
 class OddballParticle //uses an interface
 {
