@@ -23,8 +23,8 @@ void draw()
 class NormalParticle
 {
  int Color = (int)(Math.random()*255);
-  double x = 675;
-  double y = 675;
+  double x = 550;
+  double y = 550;
   double Speed = (Math.random()*7.5-3.75);
   double Angle = (double)((Math.random()*2)*PI);
   float Timer = 0;
@@ -36,12 +36,15 @@ class NormalParticle
     x = x + Math.cos(Angle)*Speed;
     y = y + Math.sin(Angle)*Speed; 
     Timer = Timer + 1;
-    Rotayto = Rotayto + (float)(PI/100);
   }
   else
   {
     x = x - Math.cos(Angle)*Speed;
     y = y - Math.sin(Angle)*Speed;
+  }
+  if (Rotayto >= 0)
+  {
+    Rotayto = Rotayto + (float)(PI/100);
   }
   
   
