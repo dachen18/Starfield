@@ -1,14 +1,16 @@
-  NormalParticle[] oof;
+  Particle[] oof;
 void setup()
 {
   frameRate(45);
  background(255);
    size(1000,1000);
-   oof = new NormalParticle[1000];
+   oof = new Particle[500];
   for (int i = 0;i< oof.length;i++)
 {
   oof[i] = new NormalParticle();
 }
+  oof[0] = new OddballParticle();
+  oof[1] = new JumboParticle();
 }
 void draw()
 {
@@ -25,7 +27,7 @@ void mousePressed()
   redraw();
 }
 
-class NormalParticle
+class NormalParticle implements Particle
 {
  int Timer2 = 0;
  int Color = (int)(Math.random()*255);
@@ -38,6 +40,8 @@ class NormalParticle
   int Timer3 = 0;
   void move()
   {
+    print(Timer3 + " ");
+    println(Timer2);
      if (Timer == 0)
   {
     x = x + Math.cos(Angle)*Speed;
@@ -81,11 +85,33 @@ interface Particle
  public void show();
  public void move();
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle
 {
-  //your code here
+  int y = 650;
+  public void show(){
+  fill(0);
+  ellipse(650,y,20,20);
 }
-class JumboParticle //uses inheritance
+  public void move()
+  {
+    if (y >= 0)
+    {
+      y = y + 10;
+    }
+    if (y >= 1050)
+    {
+      y = 0;
+    }
+  }
+}
+class JumboParticle extends NormalParticle
 {
-  //your code here
+  public void show()
+  {
+    fill(255);
+  ellipse((float)x,(float)y,100,100);
+  fill(Color);
+  ellipse((float)x+25,(float)y-10,10,10);
+  ellipse((float)x-25,(float)y-10,10,10);
+  }
 }
