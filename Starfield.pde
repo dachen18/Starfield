@@ -23,8 +23,8 @@ void draw()
 class NormalParticle
 {
  int Color = (int)(Math.random()*255);
-  double x = 500;
-  double y = 500;
+  double x = 675;
+  double y = 675;
   double Speed = (Math.random()*7.5-3.75);
   double Angle = (double)((Math.random()*2)*PI);
   float Timer = 0;
