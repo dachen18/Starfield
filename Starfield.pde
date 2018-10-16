@@ -1,20 +1,20 @@
-  Particle[] oof;
+Particle[] oof; //use interface to create array--Puts Odd/Jumbo/Normal under the interface of Particle
 void setup()
 {
-  frameRate(75);
- background(255);
+  frameRate(120);
+ background(132,112,255);
    size(1000,1000);
-   oof = new Particle[500];
+   oof = new Particle[1000];
   for (int i = 0;i< oof.length;i++)
 {
   oof[i] = new NormalParticle();
 }
-  oof[0] = new OddballParticle();
-  oof[1] = new JumboParticle();
+  oof[0] = new OddballParticle(); //Assigns the 1st instance of Particle 
+  oof[1] = new JumboParticle(); //Assigns the 2nd instance of Particle
 }
 void draw()
 {
-  background(255);
+  background(132,112,255);
   for (int i = 0;i < oof.length;i++)
   {
     oof[i].show();
@@ -27,17 +27,24 @@ void mousePressed()
   redraw();
 }
 
-class NormalParticle implements Particle
+class NormalParticle implements Particle //Class
 {
- int Timer2 = 0;
- int Color = (int)(Math.random()*255);
-  double x = 550;
-  double y = 550;
-  double Speed = (Math.random()*7.5-3.75);
-  double Angle = (double)((Math.random()*2)*PI);
-  float Timer = 0;
-  float Rotayto = 0;
-  int Timer3 = 0;
+  int Timer2,Color,Color2,Color3,Timer3;
+  double x,y,Speed,Angle;
+  float Timer,Rotayto;
+  NormalParticle(){ // Constructor
+ Timer2 = 0;
+ Color = (int)(Math.random()*255);
+ Color2 = (int)(Math.random()*255);
+ Color3 = (int)(Math.random()*255);
+ x = 500;
+y = 500;
+ Speed = (Math.random()*7.5-3.75);
+ Angle = (double)((Math.random()*2)*PI);
+ Timer = 0;
+ Rotayto = 0;
+ Timer3 = 0;
+}
   void move()
   {
      if (Timer == 0)
@@ -73,22 +80,22 @@ class NormalParticle implements Particle
   }
   void show()
   {
-    rotate(Rotayto);
-    fill((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-    ellipse((float)(x),(float)(y),20,20);
+    //rotate(Rotayto);
+    fill(Color,Color2,Color3);
+    ellipse((float)(x),(float)(y),10,10);
   }
 }
-interface Particle
+interface Particle //interface
 {
  public void show();
  public void move();
 }
-class OddballParticle implements Particle
+class OddballParticle implements Particle //shares the interface with NormalParticle
 {
   int y = 650;
   public void show(){
-  fill(0);
-  ellipse(650,y,20,20);
+  fill(255);
+  ellipse(650,y,35,35);
 }
   public void move()
   {
@@ -102,14 +109,14 @@ class OddballParticle implements Particle
     }
   }
 }
-class JumboParticle extends NormalParticle
+class JumboParticle extends NormalParticle //inherits move() and show(), show() is modified under this inheritance
 {
   public void show()
   {
     fill(255);
-  ellipse((float)x,(float)y,100,100);
-  fill(Color);
-  ellipse((float)x+25,(float)y-10,10,10);
-  ellipse((float)x-25,(float)y-10,10,10);
+  ellipse((float)x,(float)y,50,50);
+  fill(0);
+  ellipse((float)x+15,(float)y-5,5,5);
+  ellipse((float)x-15,(float)y-5,5,5);
   }
 }
