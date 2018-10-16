@@ -14,6 +14,7 @@ void setup()
 }
 void draw()
 {
+  noStroke();
   background(132,112,255);
   for (int i = 0;i < oof.length;i++)
   {
